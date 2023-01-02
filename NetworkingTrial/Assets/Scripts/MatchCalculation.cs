@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CardType {ROCK, PAPER, SCIZORS, DRAW}
+public enum CardType {ROCK, PAPER, SCIZORS}
+public enum MatchResult {WIN, LOSE, DRAW}
 public class MatchCalculation : MonoBehaviour
 {
     public static MatchCalculation Instance;
@@ -26,23 +27,22 @@ public class MatchCalculation : MonoBehaviour
 
     private void Evaluation(CardType player1, CardType player2){
         if(player1 == player2){
-            _sumbitedCards[0].playerObj.MatchResult(false, CardType.DRAW);
-            _sumbitedCards[1].playerObj.MatchResult(false, CardType.DRAW);
+            Debug.Log("draw");
             ResetCards();
             return;
         }
         switch(player1){
             case CardType.ROCK:
-                if(player2 == CardType.SCIZORS) _sumbitedCards[0].playerObj.MatchResult(true, player1);
-                else if(player2 == CardType.PAPER) _sumbitedCards[1].playerObj.MatchResult(true, player2);
+                if(player2 == CardType.SCIZORS) Debug.Log("player1 win rock");
+                else if(player2 == CardType.PAPER) Debug.Log("player2 win paper");
                 break;
             case CardType.PAPER:
-                if(player2 == CardType.ROCK) _sumbitedCards[0].playerObj.MatchResult(true, player1);
-                else if(player2 == CardType.SCIZORS) _sumbitedCards[0].playerObj.MatchResult(true, player1);
+                if(player2 == CardType.ROCK) Debug.Log("player1 win paper");
+                else if(player2 == CardType.SCIZORS) Debug.Log("player2 win scizors");
                 break;
             case CardType.SCIZORS:
-                if(player2 == CardType.PAPER) _sumbitedCards[0].playerObj.MatchResult(true, player1);
-                else if(player2 == CardType.ROCK) _sumbitedCards[0].playerObj.MatchResult(true, player1);
+                if(player2 == CardType.PAPER) Debug.Log("player1 win scizors");
+                else if(player2 == CardType.ROCK) Debug.Log("player2 win rock");
                 break;
             default:
                 Debug.Log("Invalid card type");
@@ -58,6 +58,7 @@ public class MatchCalculation : MonoBehaviour
 
         foreach((PlayerSelection playerObj, CardType cardType) player in _sumbitedCards){
             player.playerObj.CanSelectCard = true;
+            player.playerObj.ResetCardPosition();
         }
     }
 }
