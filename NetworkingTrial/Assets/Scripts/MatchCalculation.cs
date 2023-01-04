@@ -8,57 +8,69 @@ public enum MatchResult {WIN, LOSE, DRAW}
 public class MatchCalculation : MonoBehaviour
 {
     public static MatchCalculation Instance;
-    [SerializeField] private List<(PlayerSelection playerObj, CardType cardType)> _sumbitedCards;
-    //[SerializeField] private List<Tuple<PlayerSelection, CardType>> _sumbitedCards;
-    //[SerializeField] private List<CardType> _sumbitedCards;
+    private PlayerSelection player1;
+    private CardType player1Card;
     private void Awake() {
         if(Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        _sumbitedCards = new List<(PlayerSelection playerObj, CardType cardType)>();
     }
     public void SumbitCard(PlayerSelection obj, CardType cardType){
-        _sumbitedCards.Add((obj, cardType));
-        //_sumbitedCards.Add(new Tuple<PlayerSelection, CardType>(obj, cardType));
         obj.CanSelectCard = false;
+        if(player1 == null){
+            player1 = obj;
+            player1Card = cardType;
+        }
+        else
+            CreateMatch(obj, cardType);
         Debug.Log("Added Card");
-        if(_sumbitedCards.Count == 2) Evaluation(_sumbitedCards[0].cardType, _sumbitedCards[1].cardType);
     }
 
-    private void Evaluation(CardType player1, CardType player2){
-        if(player1 == player2){
+    private void CreateMatch(PlayerSelection player2, CardType player2Card){
+        MatchData matchData = new MatchData(player1, player2, player1Card, player2Card);
+        StartCoroutine(WaitForMatchToStart(matchData));
+    }
+
+    private IEnumerator WaitForMatchToStart(MatchData matchData){
+        while(matchData.Player2.CardAnimationFinished == false)
+            yield return null;
+        
+        Debug.Log("Finished waiting");
+        Evaluation(matchData);
+    }
+
+    private void Evaluation(MatchData matchData){
+        if(matchData.Player1Card == matchData.Player2Card){
             Debug.Log("draw");
-            ResetCards();
+            ResetCards(matchData);
             return;
         }
-        switch(player1){
+        switch(matchData.Player1Card){
             case CardType.ROCK:
-                if(player2 == CardType.SCIZORS) Debug.Log("player1 win rock");
-                else if(player2 == CardType.PAPER) Debug.Log("player2 win paper");
+                if(matchData.Player2Card == CardType.SCIZORS) Debug.Log("player1 win rock");
+                else if(matchData.Player2Card == CardType.PAPER) Debug.Log("player2 win paper");
                 break;
             case CardType.PAPER:
-                if(player2 == CardType.ROCK) Debug.Log("player1 win paper");
-                else if(player2 == CardType.SCIZORS) Debug.Log("player2 win scizors");
+                if(matchData.Player2Card == CardType.ROCK) Debug.Log("player1 win paper");
+                else if(matchData.Player2Card == CardType.SCIZORS) Debug.Log("player2 win scizors");
                 break;
             case CardType.SCIZORS:
-                if(player2 == CardType.PAPER) Debug.Log("player1 win scizors");
-                else if(player2 == CardType.ROCK) Debug.Log("player2 win rock");
+                if(matchData.Player2Card == CardType.PAPER) Debug.Log("player1 win scizors");
+                else if(matchData.Player2Card == CardType.ROCK) Debug.Log("player2 win rock");
                 break;
             default:
                 Debug.Log("Invalid card type");
                 break;
 
         }
-
-        ResetCards();
+        
+        ResetCards(matchData);
     }
 
-    private void ResetCards(){
-        _sumbitedCards.Clear();
-
-        foreach((PlayerSelection playerObj, CardType cardType) player in _sumbitedCards){
-            player.playerObj.CanSelectCard = true;
-            player.playerObj.ResetCardPosition();
-        }
+    private void ResetCards(MatchData matchData){
+        player1 = null;
+        
+        matchData.Player1.ResetCardPosition();
+        matchData.Player2.ResetCardPosition();
     }
 }
