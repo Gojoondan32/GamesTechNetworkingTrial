@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 public class Card : MonoBehaviour
 {
@@ -23,11 +24,14 @@ public class Card : MonoBehaviour
         }
         _movePointPositions[_movePointPositions.Length - 1] = _movePointPositions[_movePointPositions.Length - 2];
     }
-    public void PlayCardAnimation(PlayerSelection playerCallback){
+    public void PlaceCardAnimation(PlayerSelection playerCallback){
         playerCallback.CardAnimationFinished = false;
         LeanTween.rotateX(gameObject, 0, 0.25f);
         LeanTween.moveSpline(gameObject, _movePointPositions, 0.25f);
         StartCoroutine(AnimationFinished(playerCallback));
+    }
+    public void UnselectedCardAnimation(){
+
     }
     private IEnumerator AnimationFinished(PlayerSelection playerCallback){
         yield return new WaitForSeconds(0.25f);
@@ -38,5 +42,4 @@ public class Card : MonoBehaviour
         transform.rotation = _startRotation;
         Debug.Log("Reseting");
     }
-    
 }
