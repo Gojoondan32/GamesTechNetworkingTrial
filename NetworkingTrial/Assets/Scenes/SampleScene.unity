@@ -2106,7 +2106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed21ac26782520468a4b443aa2ffd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _testCube: {fileID: 0}
   _camera: {fileID: 525939707}
 --- !u!4 &1148786650
 Transform:

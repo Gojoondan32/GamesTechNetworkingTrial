@@ -31,7 +31,11 @@ public class Card : MonoBehaviour
         StartCoroutine(AnimationFinished(playerCallback));
     }
     public void UnselectedCardAnimation(){
-
+        //Vector3 pos = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - 2f);
+        Vector3 pos = transform.worldToLocalMatrix.MultiplyVector(transform.forward);
+        
+        LeanTween.move(gameObject, -transform.forward * 2f, 0.25f);
+        //LeanTween.moveLocalZ(gameObject, transform.localPosition.z - 2f, 0.25f);
     }
     private IEnumerator AnimationFinished(PlayerSelection playerCallback){
         yield return new WaitForSeconds(0.25f);

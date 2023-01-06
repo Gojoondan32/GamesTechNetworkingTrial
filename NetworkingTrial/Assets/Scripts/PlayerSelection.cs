@@ -3,16 +3,8 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerSelection : NetworkBehaviour {
-    [SerializeField] private GameObject _testCube;
-    [SerializeField] private Camera _camera;
-    private Card _activeCard;
-    private bool _canSelectCard;
-    private bool _cardAnimationFinished;
-    
+public class PlayerSelection : PlayerNetwork {
 
-    public bool CanSelectCard {private get{return _canSelectCard;} set {_canSelectCard = value;}}
-    public bool CardAnimationFinished {get{return _cardAnimationFinished;} set{_cardAnimationFinished = value;}}
     
     private void Awake() {
         transform.position = AssignPositions.Instance.GetStartingPosition();
@@ -29,7 +21,7 @@ public class PlayerSelection : NetworkBehaviour {
     // Update is called once per frame
     private void Update()
     {
-        if(!IsOwner || !CanSelectCard) return;
+        //if(!IsOwner || !CanSelectCard) return;
         //if(!CanSelectCard) return;
         //if(Display.activeEditorGameViewTarget != _camera.targetDisplay) return;
 
@@ -39,12 +31,18 @@ public class PlayerSelection : NetworkBehaviour {
                 //!This is not working on the client side
                 Card card = hit.collider.gameObject.GetComponent<Card>();
                 _activeCard = card;
-                Debug.Log(_activeCard);
-                //TestServerRpc(card.CardType);
+                PlayAnim();
+                //SumbitCardToServerRpc(card.CardType);
+                
             }
                 
                 
         }
+    }
+
+    public void PlayAnim(){
+        //_activeCard.UnselectedCardAnimation();
+        _activeCard.PlaceCardAnimation(this);
     }
 
     public void MatchResult(bool win, CardType cardType){

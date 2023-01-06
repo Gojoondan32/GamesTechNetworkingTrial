@@ -8,14 +8,14 @@ public enum MatchResult {WIN, LOSE, DRAW}
 public class MatchCalculation : MonoBehaviour
 {
     public static MatchCalculation Instance;
-    [SerializeField] private PlayerSelection player1;
+    [SerializeField] private PlayerNetwork player1;
     private CardType player1Card;
     private void Awake() {
         if(Instance == null) Instance = this;
         else Destroy(gameObject);
 
     }
-    public void SumbitCard(PlayerSelection obj, CardType cardType){
+    public void SumbitCard(PlayerNetwork obj, CardType cardType){
         obj.CanSelectCard = false;
         Debug.Log($"Match Calculation: {obj.OwnerClientId}");
         if(player1 == null){
@@ -27,7 +27,7 @@ public class MatchCalculation : MonoBehaviour
         
     }
 
-    private void CreateMatch(PlayerSelection player2, CardType player2Card){
+    private void CreateMatch(PlayerNetwork player2, CardType player2Card){
         MatchData matchData = new MatchData(player1, player2, player1Card, player2Card);
         //StartCoroutine(WaitForMatchToStart(matchData));
         Evaluation(matchData);
@@ -72,9 +72,7 @@ public class MatchCalculation : MonoBehaviour
     private void ResetCards(MatchData matchData){
         player1 = null;
         
-        //matchData.Player1.ResetCardClientRpc();
-        //matchData.Player2.ResetCardClientRpc();
-        //matchData.Player1.ResetCardPosition();
-        //matchData.Player2.ResetCardPosition();
+        matchData.Player1.ResetCardsFromServer();
+        matchData.Player2.ResetCardsFromServer();
     }
 }
