@@ -24,7 +24,7 @@ public class Card : MonoBehaviour
         }
         _movePointPositions[_movePointPositions.Length - 1] = _movePointPositions[_movePointPositions.Length - 2];
     }
-    public void PlaceCardAnimation(PlayerSelection playerCallback){
+    public void PlaceCardAnimation(Player playerCallback){
         playerCallback.CardAnimationFinished = false;
         LeanTween.rotateX(gameObject, 0, 0.25f);
         LeanTween.moveSpline(gameObject, _movePointPositions, 0.25f);
@@ -37,7 +37,7 @@ public class Card : MonoBehaviour
         LeanTween.move(gameObject, -transform.forward * 2f, 0.25f);
         //LeanTween.moveLocalZ(gameObject, transform.localPosition.z - 2f, 0.25f);
     }
-    private IEnumerator AnimationFinished(PlayerSelection playerCallback){
+    private IEnumerator AnimationFinished(Player playerCallback){
         yield return new WaitForSeconds(0.25f);
         playerCallback.CardAnimationFinished = true;
     }

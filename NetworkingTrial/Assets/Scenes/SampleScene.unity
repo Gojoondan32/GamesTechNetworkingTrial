@@ -696,93 +696,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255398302}
   m_CullTransparentMesh: 1
---- !u!1 &256032585
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 256032587}
-  - component: {fileID: 256032586}
-  m_Layer: 0
-  m_Name: A*
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &256032586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 256032585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  data:
-    dataString: UEsDBBQAAAgIAAAAIewRJNmTkQIAAJkFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVG1v2jAQ/ivIn9cpUCa2fdsCpZvUFpVN/bD0wxFfiIVjR34p0Ir/vrMTSKCTJiE5PPfc3XMv9hsTytaYO23mRvA7zZF9HbDwzT4MOuMt7mCt1VK84pHzJLgrAwki5xGc0IQPg5vVFToj8m9qLQM5IdArUWhTzfgaU22dJbgAaZFMRrvgrQh6G7Bd67Bvz9dwDg70laNyaP7H8iqXUNXIg9qOPD6yxw1NUR0tI2jOtZTCtiKY29exyBRq66kEInABVFRMH/glinXp6M+o7/xQFBZdK8nAfioM9aaJyr7rpmEV2E2j6wWkjwJGn6OmJujdO/vVMJoLo6vbY95hEnK4UuSbR9jnYF2vo314ei7cqy3IDawkPpWo7vXcaK84GZ3xwdVbHE17oU61pSXmm47XaL0Aff1+OsNuOodY/S6VoloF5OO4AZZSx35/CT5oaDI/SHDcCdtGIjSI+G3xF6z7y9MaboSxjkxtQhXUrbQ3gcpmsWehGO9SbRRGuNVcowLp9gsK4y5HeGHrpb2w3EC4Jm3y1nbc/guXCHf8JLkwLfS2G5bFn76qF1oot0QwedmLZ0u9vUNbPngnhcKuomC4pyamWqlm/ew/3JbeFJD33BzunDc4BQfxEpAm2hLed6WGRg/lpQwLGasIwf9QFeH3HJpcAuWVEWb3WsXrc3Y+h0VYe8HP15yNeJKvEg6TZJQUkwm/ur4uYDxZTYaQjD7lPGHxHghFPQe5aJrWjoo2SHW1KNr540s2mBuo483jBrZz8Vrp3viFKvQyN4jqoYlwKhYNJaEXgs+4oDKX6JxQcffYW8akzjfIs1OgLDZ2tnMGsi5Kxmrxol1AMpbG9ytjAT5dq4XBF4HbkPwY7MAOfwFQSwMEFAAACAgAAAAh7LUhu7xtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSM7TQUVBKL0osyCgGihiCOKWZKSB2tJJRikFykkFKormBkUGauXmKrrFxWqKJeZK5YaKBkWlyioFSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAAh7BEk2ZORAgAAmQUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAAh7LUhu7xtAAAAeAAAAAkAJAAAAAAAAAAAAAAA3gIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAACWAwAAAAA=
-    upgradeData: 
-    file_cachedStartup: {fileID: 0}
-    data_cachedStartup: 
-    cacheStartup: 0
-  showNavGraphs: 1
-  showUnwalkableNodes: 1
-  debugMode: 0
-  debugFloor: 0
-  debugRoof: 1
-  manualDebugFloorRoof: 0
-  showSearchTree: 0
-  unwalkableNodeDebugSize: 0.3
-  logPathResults: 4
-  maxNearestNodeDistance: 100
-  scanOnStartup: 1
-  fullGetNearestSearch: 0
-  prioritizeGraphs: 0
-  prioritizeGraphsLimit: 1
-  colorSettings:
-    _SolidColor: {r: 0.11764706, g: 0.4, b: 0.7882353, a: 0.9}
-    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
-    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
-    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
-    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
-    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
-    _AreaColors:
-    - {r: 0, g: 0, b: 0, a: 0}
-  tagNames: []
-  heuristic: 2
-  heuristicScale: 1
-  threadCount: 1
-  maxFrameTime: 10
-  batchGraphUpdates: 0
-  graphUpdateBatchingInterval: 0.2
-  euclideanEmbedding:
-    mode: 0
-    seed: 0
-    pivotPointRoot: {fileID: 0}
-    spreadOutCount: 1
-  showGraphs: 1
---- !u!4 &256032587
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 256032585}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &308983040
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +728,7 @@ Transform:
   - {fileID: 1966937056}
   - {fileID: 844671949}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &331161012
 GameObject:
@@ -933,7 +846,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &410087039
 GameObject:
@@ -1175,7 +1088,7 @@ RectTransform:
   m_Children:
   - {fileID: 1031058604}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1918,7 +1831,7 @@ Transform:
   - {fileID: 16331568}
   - {fileID: 525939709}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1203449764
 GameObject:
@@ -2148,7 +2061,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1311691381
 GameObject:
@@ -2498,7 +2411,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1649067019
 GameObject:
@@ -2594,7 +2507,7 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1703525101}
-    PlayerPrefab: {fileID: 3195702867037910317, guid: 96e1be9f9c4166b4fba05c9291d6f4c1,
+    PlayerPrefab: {fileID: 7454672711322510025, guid: f9a69633bfec5e74facd21d001241c0b,
       type: 3}
     NetworkPrefabs:
     - Override: 0
@@ -2605,12 +2518,6 @@ MonoBehaviour:
       OverridingTargetPrefab: {fileID: 0}
     - Override: 0
       Prefab: {fileID: 1748041126}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
-    - Override: 0
-      Prefab: {fileID: 3195702867037910317, guid: 96e1be9f9c4166b4fba05c9291d6f4c1,
-        type: 3}
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
@@ -2642,7 +2549,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1748041126
 GameObject:
@@ -2688,7 +2595,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1748041129
 MonoBehaviour:
@@ -3313,7 +3220,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2127538183
 GameObject:
@@ -3371,7 +3278,7 @@ PrefabInstance:
     - target: {fileID: 7454672711322510070, guid: f9a69633bfec5e74facd21d001241c0b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7454672711322510070, guid: f9a69633bfec5e74facd21d001241c0b,
         type: 3}

@@ -1,9 +1,9 @@
 public struct MatchData
 {
-    public PlayerNetwork Player1, Player2;
+    public Player Player1, Player2;
     public CardType Player1Card, Player2Card;
 
-    public MatchData(PlayerNetwork player1, PlayerNetwork player2, CardType player1Card, CardType player2Card)
+    public MatchData(Player player1, Player player2, CardType player1Card, CardType player2Card)
     {
         Player1 = player1;
         Player2 = player2;

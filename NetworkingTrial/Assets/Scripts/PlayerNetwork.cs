@@ -37,7 +37,7 @@ public abstract class PlayerNetwork : NetworkBehaviour
             
             //PlayCardAnimClientRpc();
             //_activeCard = _cards[index];
-            MatchCalculation.Instance.SumbitCard(this, cardType);
+            //MatchCalculation.Instance.SumbitCard(this, cardType);
         }
         
     }   

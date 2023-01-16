@@ -78,7 +78,7 @@ public class PlayerSelection : PlayerNetwork {
 
     public void PlayAnim(){
         //_activeCard.UnselectedCardAnimation();
-        _activeCard.PlaceCardAnimation(this);
+        //_activeCard.PlaceCardAnimation(this);
     }
 
     public void MatchResult(bool win, CardType cardType){
@@ -110,7 +110,7 @@ public class PlayerSelection : PlayerNetwork {
 
     [ClientRpc]
     private void CardAnimationClientRpc(){
-        _activeCard.PlaceCardAnimation(this);
+        //_activeCard.PlaceCardAnimation(this);
     }
 
 }

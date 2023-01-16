@@ -6,7 +6,7 @@ public class AssignPositions : MonoBehaviour
 {
     public static AssignPositions Instance;
     [SerializeField] private Transform _location1, _location2;
-    private bool _loaction1InUse;
+    [SerializeField] private bool _loaction1InUse;
     private void Awake() {
         if(Instance == null) Instance = this;
         else Destroy(gameObject);
