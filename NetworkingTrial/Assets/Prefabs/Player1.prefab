@@ -178,7 +178,7 @@ Transform:
   - {fileID: 1953990201589404}
   - {fileID: 1953989904648110}
   m_Father: {fileID: 7454672711322510070}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1953989576990699
 GameObject:
@@ -480,7 +480,7 @@ Transform:
   - {fileID: 1953990528681490}
   - {fileID: 1953989103272680}
   m_Father: {fileID: 7454672711322510070}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1953989892988461
 GameObject:
@@ -702,7 +702,7 @@ Transform:
   - {fileID: 1953989892988460}
   - {fileID: 1953989792251941}
   m_Father: {fileID: 7454672711322510070}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1953990201589405
 GameObject:
@@ -1037,7 +1037,7 @@ Transform:
   - {fileID: 1953990510386932}
   - {fileID: 1953990894754736}
   m_Father: {fileID: 7454672711322510070}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3970178541877773561
 GameObject:
@@ -1071,7 +1071,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7454672711322510070}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
 --- !u!20 &9111185969247411046
 Camera:
@@ -1187,12 +1187,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3950558921253156444}
   - {fileID: 1953989884257975}
   - {fileID: 1953989344672686}
   - {fileID: 1953990955531034}
   - {fileID: 1953990186522648}
   - {fileID: 547265108906804463}
-  - {fileID: 3950558921253156444}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1208,8 +1208,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed21ac26782520468a4b443aa2ffd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _testCube: {fileID: 8577548691662688591}
   _camera: {fileID: 9111185969247411046}
+  _testCube: {fileID: 0}
+  _cards:
+  - {fileID: 1953989777550802}
+  - {fileID: 1953990528681494}
+  - {fileID: 1953989103272683}
+  _activeCard: {fileID: 0}
 --- !u!114 &8171605109626399295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1258,7 +1263,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7454672711322510070}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6206463694566902778
 MeshFilter:

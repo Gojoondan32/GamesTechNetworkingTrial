@@ -16,7 +16,7 @@ public class MatchCalculation : MonoBehaviour
 
     }
     public void SumbitCard(PlayerNetwork obj, CardType cardType){
-        obj.CanSelectCard = false;
+        //obj.CanSelectCard = false;
         Debug.Log($"Match Calculation: {obj.OwnerClientId}");
         if(player1 == null){
             player1 = obj;
@@ -73,6 +73,6 @@ public class MatchCalculation : MonoBehaviour
         player1 = null;
         
         matchData.Player1.ResetCardsFromServer();
-        matchData.Player2.ResetCardsFromServer();
+        //matchData.Player2.ResetCardsFromServer();
     }
 }
