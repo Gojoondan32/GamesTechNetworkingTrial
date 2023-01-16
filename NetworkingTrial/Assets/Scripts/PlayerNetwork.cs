@@ -25,6 +25,10 @@ public abstract class PlayerNetwork : NetworkBehaviour
     protected abstract void ChangeColour();
     #endregion
 
+    public override void OnNetworkSpawn(){
+        Debug.Log("Testing");
+    }
+    
 
     #region RPC's
     [ServerRpc]
@@ -52,8 +56,9 @@ public abstract class PlayerNetwork : NetworkBehaviour
 
     [ClientRpc]
     protected void TestClientRpc(){
-        //ChangeColour();
+        
         if(!IsLocalPlayer) return;
+        ChangeColour();
         Debug.Log("Client RPC Ran" + OwnerClientId);
     }
     #endregion

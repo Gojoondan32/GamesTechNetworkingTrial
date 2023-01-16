@@ -51,7 +51,7 @@ public class PlayerSelection : PlayerNetwork {
         }
         
         if(timer >= 1f){
-            ColourChange();
+            //ColourChange();
             timer = 0f;
         }
         else

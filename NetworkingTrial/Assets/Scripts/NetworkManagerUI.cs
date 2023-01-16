@@ -9,6 +9,7 @@ public class NetworkManagerUI : MonoBehaviour
     [SerializeField] private Button _serverBtn;
     [SerializeField] private Button _hostBtn;
     [SerializeField] private Button _clientBtn;
+    [SerializeField] private Button _playBtn; 
 
     private void Awake() {
         _serverBtn.onClick.AddListener(() => {
@@ -22,5 +23,19 @@ public class NetworkManagerUI : MonoBehaviour
         {
             NetworkManager.Singleton.StartClient();
         });
+        _playBtn.onClick.AddListener(() => {
+            CheckStatus();
+        });
+    }
+
+    private IEnumerator Test(){
+        yield return new WaitForSeconds(5f);
+        Debug.Log(NetworkManager.Singleton.ConnectedHostname);
+    }
+    private void CheckStatus(){
+        if(NetworkManager.Singleton.ConnectedClientsList.Count <= 0){
+            NetworkManager.Singleton.StartHost();
+        }
+        else NetworkManager.Singleton.StartClient();
     }
 }
