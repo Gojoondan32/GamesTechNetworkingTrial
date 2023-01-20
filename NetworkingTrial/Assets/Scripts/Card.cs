@@ -44,6 +44,6 @@ public class Card : MonoBehaviour
     public void ResetCardPosition(){
         transform.position = _startPos;
         transform.rotation = _startRotation;
-        Debug.Log("Reseting");
+        //Debug.Log("Reseting");
     }
 }

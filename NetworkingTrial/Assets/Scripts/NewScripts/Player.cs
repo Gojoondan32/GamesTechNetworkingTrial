@@ -52,8 +52,12 @@ public class Player : NetworkBehaviour
                 Card card = hit.collider.gameObject.GetComponent<Card>();
                 _activeCard = card;
                 CanSelectCard = false;
-                PlayAnim();
-                StartCoroutine(WaitForAnimationToFinish());
+                //Send a message to the sever saying that this script is ready to send its data
+                CallWaitingRoomOnServerRPC();
+
+
+                //PlayAnim();
+                //StartCoroutine(WaitForAnimationToFinish());
             }
         }
 
@@ -93,12 +97,23 @@ public class Player : NetworkBehaviour
 
     #region ServerRPCs
     [ServerRpc]
+    private void CallWaitingRoomOnServerRPC() => MatchManager.Instance.WaitingRoom(this); 
+
+    [ServerRpc]
     private void SumbitCardToServerRpc(CardType cardType){
-        MatchCalculation.Instance.SumbitCard(this, cardType);
+        //MatchCalculation.Instance.SumbitCard(this, cardType);
+        MatchManager.Instance.WaitingForSubmit(this, cardType);
     }
     #endregion
 
     #region ClientRPCs
+    [ClientRpc]
+    public void PlayAnimationClientRpc(){
+        if(!IsLocalPlayer) return;
+        PlayAnim();
+        StartCoroutine(WaitForAnimationToFinish());
+    }
+
     [ClientRpc]
     private void TestNewClientRpc(){
         if(!IsLocalPlayer) return;

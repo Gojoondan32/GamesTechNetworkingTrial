@@ -5,16 +5,12 @@ using UnityEngine;
 
 public enum CardType {ROCK, PAPER, SCIZORS}
 public enum MatchResult {WIN, LOSE, DRAW}
-public class MatchCalculation : MonoBehaviour
+public class MatchCalculation : MatchManager
 {
-    public static MatchCalculation Instance;
-    [SerializeField] private Player player1;
+    //public static MatchCalculation Instance;
+    //[SerializeField] private Player player1;
     private CardType player1Card;
-    private void Awake() {
-        if(Instance == null) Instance = this;
-        else Destroy(gameObject);
-
-    }
+    /*
     public void SumbitCard(Player obj, CardType cardType){
         //obj.CanSelectCard = false;
         Debug.Log($"Match Calculation: {obj.OwnerClientId}");
@@ -26,9 +22,14 @@ public class MatchCalculation : MonoBehaviour
             CreateMatch(obj, cardType);
         
     }
+    */
+
+    protected override void SubmitCard(Player player2, CardType player2Card){
+        CreateMatch(player2, player2Card);
+    }   
 
     private void CreateMatch(Player player2, CardType player2Card){
-        MatchData matchData = new MatchData(player1, player2, player1Card, player2Card);
+        MatchData matchData = new MatchData(_player1, player2, player1Card, player2Card);
         //StartCoroutine(WaitForMatchToStart(matchData));
         Evaluation(matchData);
     }
@@ -69,10 +70,5 @@ public class MatchCalculation : MonoBehaviour
         ResetCards(matchData);
     }
 
-    private void ResetCards(MatchData matchData){
-        player1 = null;
-        
-        matchData.Player1.ResetCardsFromServer();
-        matchData.Player2.ResetCardsFromServer();
-    }
+    
 }
