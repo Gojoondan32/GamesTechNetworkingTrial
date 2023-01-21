@@ -51,10 +51,6 @@ public class Player : NetworkBehaviour
                 CanSelectCard = false;
                 //Send a message to the sever saying that this script is ready to send its data
                 CallWaitingRoomOnServerRPC(_activeCard.CardType);
-
-
-                //PlayAnim();
-                //StartCoroutine(WaitForAnimationToFinish());
             }
         }
 
@@ -71,6 +67,13 @@ public class Player : NetworkBehaviour
 
     private IEnumerator WaitForAnimationToFinish(){
         yield return new WaitUntil(() => CardAnimationFinished == true);
+
+        //This looks quite weird but it just gives player time to see what their opponent picked before it resets
+        float time = 0f;
+        while(time < 2f){
+            time += Time.deltaTime;
+            yield return null;
+        }
         SumbitCardToServerRpc();
     }
 
@@ -82,8 +85,8 @@ public class Player : NetworkBehaviour
     private void ResetCardPosition()
     {
         Debug.Log("Reset Card has been called");
-        if(_activeCard == null) _testCube.GetComponent<Renderer>().material.color = Color.red;
-        else _testCube.GetComponent<Renderer>().material.color = Color.blue;
+        //if(_activeCard == null) _testCube.GetComponent<Renderer>().material.color = Color.red;
+        //else _testCube.GetComponent<Renderer>().material.color = Color.blue;
 
         CanSelectCard = true;
         _activeCard.ResetCardPosition();
@@ -116,7 +119,7 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     private void TestNewClientRpc(){
         if(!IsLocalPlayer) return;
-        _testCube.GetComponent<Renderer>().material.color = Color.blue;
+        //_testCube.GetComponent<Renderer>().material.color = Color.blue;
     }
 
     [ClientRpc]

@@ -27,8 +27,9 @@ public abstract class MatchManager : MonoBehaviour
     }
 
     public void WaitingForSubmit(){
-        _matchData.Counter++;
-        if(_matchData.Counter == 2){
+        _matchData.Counter++; //Used to check that both players have finished their animations
+        int numberOfPlayers = 2;
+        if(_matchData.Counter == numberOfPlayers){
             Debug.Log("Both players finished");
             StartMatch();
         }
