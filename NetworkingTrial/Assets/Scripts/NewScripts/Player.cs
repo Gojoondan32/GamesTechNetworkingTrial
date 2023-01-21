@@ -32,17 +32,14 @@ public class Player : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (IsOwner)
-        {
-            Debug.Log("Object owned");
-            _camera.gameObject.SetActive(true);
-        }
+        if (IsOwner) _camera.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!IsOwner || !CanSelectCard) return;
+        //if(Display.activeEditorGameViewTarget != _camera.targetDisplay) return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -53,7 +50,7 @@ public class Player : NetworkBehaviour
                 _activeCard = card;
                 CanSelectCard = false;
                 //Send a message to the sever saying that this script is ready to send its data
-                CallWaitingRoomOnServerRPC();
+                CallWaitingRoomOnServerRPC(_activeCard.CardType);
 
 
                 //PlayAnim();
@@ -74,7 +71,7 @@ public class Player : NetworkBehaviour
 
     private IEnumerator WaitForAnimationToFinish(){
         yield return new WaitUntil(() => CardAnimationFinished == true);
-        SumbitCardToServerRpc(_activeCard.CardType);
+        SumbitCardToServerRpc();
     }
 
     #region Reset Section
@@ -91,18 +88,20 @@ public class Player : NetworkBehaviour
         CanSelectCard = true;
         _activeCard.ResetCardPosition();
         _activeCard = null;
-        //_rockCard.ResetCardPosition();
     }
     #endregion
 
     #region ServerRPCs
+
+    //!cardType must be used as a parameter here because this function is called on the server
+    //!as such, the server does not know what the active card of this client is
     [ServerRpc]
-    private void CallWaitingRoomOnServerRPC() => MatchManager.Instance.WaitingRoom(this); 
+    private void CallWaitingRoomOnServerRPC(CardType cardType) => MatchManager.Instance.WaitingRoom(this, cardType); 
 
     [ServerRpc]
-    private void SumbitCardToServerRpc(CardType cardType){
+    private void SumbitCardToServerRpc(){
         //MatchCalculation.Instance.SumbitCard(this, cardType);
-        MatchManager.Instance.WaitingForSubmit(this, cardType);
+        MatchManager.Instance.WaitingForSubmit();
     }
     #endregion
 

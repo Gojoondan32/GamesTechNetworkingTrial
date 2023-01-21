@@ -10,6 +10,11 @@ public class MatchCalculation : MatchManager
     //public static MatchCalculation Instance;
     //[SerializeField] private Player player1;
     private CardType player1Card;
+    
+
+    protected override void StartMatch() => Evaluation();
+
+    #region OldStuff
     /*
     public void SumbitCard(Player obj, CardType cardType){
         //obj.CanSelectCard = false;
@@ -23,15 +28,14 @@ public class MatchCalculation : MatchManager
         
     }
     */
-
     protected override void SubmitCard(Player player2, CardType player2Card){
         CreateMatch(player2, player2Card);
     }   
 
     private void CreateMatch(Player player2, CardType player2Card){
-        MatchData matchData = new MatchData(_player1, player2, player1Card, player2Card);
+        //MatchData matchData = new MatchData(_player1, player2, player1Card, player2Card);
         //StartCoroutine(WaitForMatchToStart(matchData));
-        Evaluation(matchData);
+        //Evaluation(matchData);
     }
 
     private IEnumerator WaitForMatchToStart(MatchData matchData){
@@ -39,27 +43,28 @@ public class MatchCalculation : MatchManager
             yield return null;
         
         Debug.Log("Finished waiting");
-        Evaluation(matchData);
+        //Evaluation(matchData);
     }
+    #endregion
 
-    private void Evaluation(MatchData matchData){
-        if(matchData.Player1Card == matchData.Player2Card){
+    private void Evaluation(){
+        if(_matchData.Player1Card == _matchData.Player2Card){
             Debug.Log("draw");
-            ResetCards(matchData);
+            ResetCards();
             return;
         }
-        switch(matchData.Player1Card){
+        switch(_matchData.Player1Card){
             case CardType.ROCK:
-                if(matchData.Player2Card == CardType.SCIZORS) Debug.Log("player1 win rock");
-                else if(matchData.Player2Card == CardType.PAPER) Debug.Log("player2 win paper");
+                if(_matchData.Player2Card == CardType.SCIZORS) Debug.Log("player1 win rock");
+                else if(_matchData.Player2Card == CardType.PAPER) Debug.Log("player2 win paper");
                 break;
             case CardType.PAPER:
-                if(matchData.Player2Card == CardType.ROCK) Debug.Log("player1 win paper");
-                else if(matchData.Player2Card == CardType.SCIZORS) Debug.Log("player2 win scizors");
+                if(_matchData.Player2Card == CardType.ROCK) Debug.Log("player1 win paper");
+                else if(_matchData.Player2Card == CardType.SCIZORS) Debug.Log("player2 win scizors");
                 break;
             case CardType.SCIZORS:
-                if(matchData.Player2Card == CardType.PAPER) Debug.Log("player1 win scizors");
-                else if(matchData.Player2Card == CardType.ROCK) Debug.Log("player2 win rock");
+                if(_matchData.Player2Card == CardType.PAPER) Debug.Log("player1 win scizors");
+                else if(_matchData.Player2Card == CardType.ROCK) Debug.Log("player2 win rock");
                 break;
             default:
                 Debug.Log("Invalid card type");
@@ -67,7 +72,7 @@ public class MatchCalculation : MatchManager
 
         }
         
-        ResetCards(matchData);
+        ResetCards();
     }
 
     

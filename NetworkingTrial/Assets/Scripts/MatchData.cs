@@ -1,17 +1,34 @@
 public class MatchData
 {
-    public Player Player1, Player2;
+    public Player Player1, Player2; //This should only ever be used as a callback
     public CardType Player1Card, Player2Card;
 
-    public MatchData(Player player1, Player player2, CardType player1Card, CardType player2Card)
+    private bool _isReady;
+    public bool IsReady{get{return _isReady;}}
+
+    public int Counter;
+
+    public MatchData()
     {
-        Player1 = player1;
-        Player2 = player2;
-        Player1Card = player1Card;
-        Player2Card = player2Card;
+        Reset();
     }
 
-    public void CreateMatchData(){
-        
+    public void AddMatchData(Player player, CardType cardType){
+        if(Player1 == null){
+            Player1 = player;
+            Player1Card = cardType;
+        }
+        else{
+            Player2 = player;
+            Player2Card = cardType;
+            _isReady = true;
+        }
+    }
+
+    public void Reset(){
+        Player1 = null;
+        Player2 = null;
+        _isReady = false;
+        Counter = 0;
     }
 }

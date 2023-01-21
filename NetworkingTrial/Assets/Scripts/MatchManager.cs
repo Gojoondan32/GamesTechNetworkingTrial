@@ -5,42 +5,43 @@ using UnityEngine;
 public abstract class MatchManager : MonoBehaviour
 {
     public static MatchManager Instance;
-    protected Player _player1;
-    protected CardType _player1CardType;
+    protected MatchData _matchData;
+
+
     private void Awake() {
         if(Instance == null) Instance = this;
         else Destroy(gameObject);
 
+        _matchData = new MatchData();
     }
 
-    public void WaitingRoom(Player playerObj){
-       if(_player1 == null){
-           _player1 = playerObj;
-           return;
-       }
-       else{
-           //Run the animations 
-           _player1.PlayAnimationClientRpc();
-           playerObj.PlayAnimationClientRpc();
-           //SubmitCard(playerObj, playerCardType);
-       }
+    public void WaitingRoom(Player playerObj, CardType cardType){
+        _matchData.AddMatchData(playerObj, cardType);
+        Debug.Log("Match data has been added in waiting room");
+
+        if(_matchData.IsReady == false) return;
+
+        //Play the animations
+        _matchData.Player1.PlayAnimationClientRpc();
+        _matchData.Player2.PlayAnimationClientRpc();
     }
 
-    public void WaitingForSubmit(Player playerObj, CardType playerCardType){
-        if(_player1 == null){
-            _player1 = playerObj;
-            _player1CardType = playerCardType;
-            return;
+    public void WaitingForSubmit(){
+        _matchData.Counter++;
+        if(_matchData.Counter == 2){
+            Debug.Log("Both players finished");
+            StartMatch();
         }
-        else SubmitCard(playerObj, playerCardType);
     }
 
     protected abstract void SubmitCard(Player player2, CardType player2Card);
+    protected abstract void StartMatch();
 
-    protected void ResetCards(MatchData matchData){
-        _player1 = null;
-        
-        matchData.Player1.ResetCardsFromServer();
-        matchData.Player2.ResetCardsFromServer();
+    protected void ResetCards(){
+        _matchData.Player1.ResetCardsFromServer();
+        _matchData.Player2.ResetCardsFromServer();
+
+        //!Reset match data 
+        _matchData.Reset();
     }
 }
