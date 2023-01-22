@@ -27,6 +27,7 @@ public class Card : MonoBehaviour
     public void PlaceCardAnimation(Player playerCallback){
         playerCallback.CardAnimationFinished = false;
         LeanTween.rotateX(gameObject, 0, 0.25f);
+        //This is a set of points which the card will move through before reching the end
         LeanTween.moveSpline(gameObject, _movePointPositions, 0.25f);
         StartCoroutine(AnimationFinished(playerCallback));
     }

@@ -53,6 +53,7 @@ public class MatchCalculation : MatchManager
             ResetCards();
             return;
         }
+        //Compare player 2's card to player 1's card
         switch(_matchData.Player1Card){
             case CardType.ROCK:
                 if(_matchData.Player2Card == CardType.SCIZORS) Debug.Log("player1 win rock");
