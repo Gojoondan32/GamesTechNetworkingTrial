@@ -12,14 +12,20 @@ public class Player : NetworkBehaviour
 
     #region Accessible Variables
 
-    protected bool _canSelectCard;
-    protected bool _cardAnimationFinished;
+    private bool _canSelectCard;
     public bool CanSelectCard { protected get { return _canSelectCard; } set { _canSelectCard = value; } }
+    
+    private bool _cardAnimationFinished;
     public bool CardAnimationFinished { get { return _cardAnimationFinished; } set { _cardAnimationFinished = value; } }
+    
+    private ulong _playerId;
+    public ulong PlayerId {get { return _playerId;}}
     #endregion
 
     #region Private Variables
     [SerializeField] private Card _activeCard;
+    [SerializeField] private int _wins;
+    [SerializeField] private int _losses;
     #endregion
     private void Awake() {
         transform.position = AssignPositions.Instance.GetStartingPosition();
@@ -33,6 +39,12 @@ public class Player : NetworkBehaviour
     void Start()
     {
         if (IsOwner) _camera.gameObject.SetActive(true);
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        _playerId = OwnerClientId;
     }
 
     // Update is called once per frame
@@ -123,9 +135,23 @@ public class Player : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void ResetCardClientRpc(){
+    public void ResetCardClientRpc(){
         if(!IsLocalPlayer) return;
         ResetCardPosition();
+    }
+
+
+    [ClientRpc]
+    public void RecordMatchResultClientRpc(bool result, ClientRpcParams clientRpcParams){
+        Debug.Log($"Player {_playerId} {result}");
+        if(result){
+            _wins++;
+            NetworkManagerUI.Instance.UpdateWins(_wins);
+        }
+        else{
+            _losses++;
+            NetworkManagerUI.Instance.UpdateLosses(_losses);
+        }
     }
     #endregion
 

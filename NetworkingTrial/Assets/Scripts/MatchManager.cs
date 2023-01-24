@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 public abstract class MatchManager : MonoBehaviour
 {
@@ -38,9 +39,18 @@ public abstract class MatchManager : MonoBehaviour
     protected abstract void SubmitCard(Player player2, CardType player2Card);
     protected abstract void StartMatch();
 
+
+    protected void RecordMatchResultWin(Player player){
+        player.RecordMatchResultClientRpc(true, new ClientRpcParams {Send = new ClientRpcSendParams {TargetClientIds = new List<ulong> {player.PlayerId}}});
+    }
+    protected void RecordMatchResultLoss(Player player)
+    {
+        player.RecordMatchResultClientRpc(false, new ClientRpcParams {Send = new ClientRpcSendParams {TargetClientIds = new List<ulong> {player.PlayerId}}});
+    }
+
     protected void ResetCards(){
-        _matchData.Player1.ResetCardsFromServer();
-        _matchData.Player2.ResetCardsFromServer();
+        _matchData.Player1.ResetCardClientRpc();
+        _matchData.Player2.ResetCardClientRpc();
 
         //!Reset match data 
         _matchData.Reset();

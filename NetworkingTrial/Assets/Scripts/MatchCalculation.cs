@@ -56,16 +56,16 @@ public class MatchCalculation : MatchManager
         //Compare player 2's card to player 1's card
         switch(_matchData.Player1Card){
             case CardType.ROCK:
-                if(_matchData.Player2Card == CardType.SCIZORS) Debug.Log("player1 win rock");
-                else if(_matchData.Player2Card == CardType.PAPER) Debug.Log("player2 win paper");
+                if(_matchData.Player2Card == CardType.SCIZORS) RecordMatchResults(true); //Player 1 win rock
+                else if(_matchData.Player2Card == CardType.PAPER) RecordMatchResults(false); //Player 2 win paper
                 break;
             case CardType.PAPER:
-                if(_matchData.Player2Card == CardType.ROCK) Debug.Log("player1 win paper");
-                else if(_matchData.Player2Card == CardType.SCIZORS) Debug.Log("player2 win scizors");
+                if(_matchData.Player2Card == CardType.ROCK) RecordMatchResults(true); //Player 1 win paper
+                else if(_matchData.Player2Card == CardType.SCIZORS) RecordMatchResults(false); //Player 2 win scizors
                 break;
             case CardType.SCIZORS:
-                if(_matchData.Player2Card == CardType.PAPER) Debug.Log("player1 win scizors");
-                else if(_matchData.Player2Card == CardType.ROCK) Debug.Log("player2 win rock");
+                if(_matchData.Player2Card == CardType.PAPER) RecordMatchResults(true); //Player 1 win scizors
+                else if(_matchData.Player2Card == CardType.ROCK) RecordMatchResults(false); //Player 2 win rock
                 break;
             default:
                 Debug.Log("Invalid card type");
@@ -76,5 +76,14 @@ public class MatchCalculation : MatchManager
         ResetCards();
     }
 
-    
+    private void RecordMatchResults(bool player1Win){
+        if(player1Win){
+            RecordMatchResultWin(_matchData.Player1);
+            RecordMatchResultLoss(_matchData.Player2);
+        }
+        else{
+            RecordMatchResultWin(_matchData.Player2);
+            RecordMatchResultLoss(_matchData.Player1);
+        }
+    }
 }
